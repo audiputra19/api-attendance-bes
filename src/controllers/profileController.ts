@@ -14,13 +14,17 @@ export const ProfileAttendance = async (req: Request, res: Response) => {
                 telp as nohp,
                 tgl_lahir,
                 tgl_masuk,
-                sta_kerja as st_kerja,
-                jab_id as jabatan,
-                sta_pendidikan as pendidikan,
+                st_kerja.status_kerja as st_kerja,
+                jabatan.jabatan,
+                st_pendidikan.pendidikan,
                 sta_marital as status,
-                dept_id as divisi,
+                departemen.Departemen as divisi,
                 norek as no_rek
             FROM karyawan 
+            INNER JOIN departemen ON departemen.dept_id = karyawan.dept_id
+            INNER JOIN st_kerja ON st_kerja.id_staker = karyawan.sta_kerja
+            INNER JOIN jabatan ON jabatan.jab_id = karyawan.jab_id
+            INNER JOIN st_pendidikan ON st_pendidikan.pendidikan_id = karyawan.sta_pendidikan
             WHERE nik = ?`, [nik]
         );
         const data = row[0] as Profile;

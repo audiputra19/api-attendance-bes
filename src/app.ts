@@ -14,8 +14,8 @@ import verficationRouter from './routes/verificationRoutes';
 const app = express();  
 
 app.use(cors({
-    // origin: 'https://project-absensi.vercel.app',
-    origin: 'http://localhost:3000',
+    origin: 'https://project-attendance-bes.vercel.app',
+    // origin: 'http://localhost:3000',
 }));
 
 app.use(express.json());
